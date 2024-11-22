@@ -1,6 +1,5 @@
 package com.guesstheword.service;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
@@ -8,15 +7,41 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameService {
 
+	private String randomlyChoosenWord = null;
+	
 	private String[] randomWords = {"father", "mother", "sister", "string", "hello", "light", "java"};
+	
+	private char[] allCharactersOfTheWord;
 
 	Random random = new Random();
 	
+	
+	public GameService() {
+		
+		randomlyChoosenWord = randomWords[random.nextInt(randomWords.length)];
+		System.out.println("Randomly choosen word = "+ randomlyChoosenWord);
+		allCharactersOfTheWord = new char[randomlyChoosenWord.length()]; 
+	}
+
+
 	@Override
 	public String toString() {
 		
-		System.out.println(randomWords.length);
-		return randomWords[random.nextInt(randomWords.length)];
+		
+		String ret = "";
+		
+		
+		  for (char c : allCharactersOfTheWord) { 
+			  
+			  if (c == '\u0000') {
+				  
+				  ret = ret + "_";
+		  }
+			  ret = ret + " ";
+			  
+		  }
+		 
+		return randomlyChoosenWord;
 	}
 	
 	
