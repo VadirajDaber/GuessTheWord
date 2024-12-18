@@ -19,7 +19,6 @@ public class GameService {
 	public GameService() {
 		
 		randomlyChoosenWord = randomWords[random.nextInt(randomWords.length)];
-		System.out.println("Randomly choosen word = "+ randomlyChoosenWord);
 		allCharactersOfTheWord = new char[randomlyChoosenWord.length()]; 
 	}
 
@@ -41,7 +40,7 @@ public class GameService {
 			  
 		  }
 		 
-		return randomlyChoosenWord;
+		return ret;
 	}
 	
 	
