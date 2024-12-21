@@ -20,7 +20,16 @@ public class GameController {
 	
 		
 		String randomWord = gameService.toString();
+		
+		
+		if(guessedChar!=null) {
+			
+			gameService.addGuess(guessedChar.charAt(0));
+			randomWord = gameService.toString();
+		}
+		
 		model.addAttribute("randomWord", randomWord);
+		
 		return "game-home-page";
 	}
 }
