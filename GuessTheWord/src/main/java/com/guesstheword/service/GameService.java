@@ -44,17 +44,19 @@ public class GameService {
 		return ret;
 	}
 
-	public void addGuess(char guessedChar) {
+	public boolean addGuess(char guessedChar) {
 
-		
+		boolean isGuessCorrect = false;
 
 		for (int i = 0; i < randomlyChoosenWord.length(); i++) {
 
 			if (guessedChar == randomlyChoosenWord.charAt(i)) {
 
 				allCharactersOfTheWord[i] = guessedChar;
+				isGuessCorrect = true;
 			}
 		}
+		return isGuessCorrect;
 	}
 
 }

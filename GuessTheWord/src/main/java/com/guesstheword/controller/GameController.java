@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.guesstheword.service.GameService;
+import com.guesstheword.utils.GameUtils;
 
 
 @Controller
@@ -14,6 +15,9 @@ public class GameController {
 
 	@Autowired
 	private GameService gameService;
+	
+	@Autowired
+	private GameUtils gameUtils;
 	
 	@GetMapping("/")
 	public String showGameHomePage(Model model, @RequestParam(value = "guessedChar" ,required = false ) String guessedChar) {
@@ -24,11 +28,16 @@ public class GameController {
 		
 		if(guessedChar!=null) {
 			
-			gameService.addGuess(guessedChar.charAt(0));
+			boolean isGuessCorrect = gameService.addGuess(guessedChar.charAt(0));
 			randomWord = gameService.toString();
+			if(isGuessCorrect == false) {
+				
+				 gameUtils.reduceTry();
+			}
 		}
 		
 		model.addAttribute("randomWord", randomWord);
+		model.addAttribute("triesLeft", gameUtils.getTriesRemaining());
 		
 		return "game-home-page";
 	}
