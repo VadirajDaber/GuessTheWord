@@ -2,10 +2,14 @@ package com.guesstheword.service;
 
 import java.util.Random;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 @Service
+@Scope("prototype")
 public class GameService {
+	
+	
 
 	private String randomlyChoosenWord = null;
 

@@ -40,5 +40,17 @@ public class GameController {
 		model.addAttribute("triesLeft", gameUtils.getTriesRemaining());
 		
 		return "game-home-page";
+		
+	}
+	
+	
+	@GetMapping("/reload")
+	public String reloadGame() {
+		gameService = gameUtils.reload();
+		
+		//reset the tries to initial value
+		gameUtils.resetTries();
+		return "redirect:/";
+		
 	}
 }
